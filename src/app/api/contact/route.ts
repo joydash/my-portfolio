@@ -71,7 +71,7 @@ export async function POST(req: Request) {
 
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_EMAIL ?? "info@joydash.me";
-  const from = process.env.CONTACT_FROM ?? "Portfolio Contact <onboarding@resend.dev>";
+  const from = process.env.CONTACT_FROM ?? "Portfolio Contact <noreply@joydash.me>";
 
   if (!apiKey) {
     return fail(503, "The contact form is not configured yet. Please email info@joydash.me directly.");
