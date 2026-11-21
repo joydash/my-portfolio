@@ -4,7 +4,7 @@ import SectionHeading from "./SectionHeading";
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative py-20 sm:py-28">
+    <section id="skills" className="relative py-10 sm:py-14 lg:py-16">
       <div className="wrap">
         <SectionHeading
           eyebrow="Technology & Infrastructure Matrix"

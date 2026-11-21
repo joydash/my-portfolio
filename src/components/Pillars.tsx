@@ -5,7 +5,7 @@ import SectionHeading from "./SectionHeading";
 
 export default function Pillars() {
   return (
-    <section id="pillars" className="relative py-20 sm:py-28">
+    <section id="pillars" className="relative py-10 sm:py-14 lg:py-16">
       <div className="wrap">
         <SectionHeading
           eyebrow="Core Engineering Pillars"

@@ -5,7 +5,7 @@ import SectionHeading from "./SectionHeading";
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="relative py-20 sm:py-28">
+    <section id="certifications" className="relative py-10 sm:py-14 lg:py-16">
       <div className="wrap">
         <SectionHeading
           eyebrow="Licenses & Certifications"

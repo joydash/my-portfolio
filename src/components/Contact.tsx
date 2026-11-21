@@ -8,7 +8,7 @@ import SectionHeading from "./SectionHeading";
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative py-20 sm:py-28">
+    <section id="contact" className="relative py-10 sm:py-14 lg:py-16">
       <div className="wrap">
         <SectionHeading
           eyebrow="Contact"

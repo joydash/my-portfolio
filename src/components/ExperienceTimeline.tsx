@@ -6,7 +6,7 @@ import SectionHeading from "./SectionHeading";
 
 export default function ExperienceTimeline() {
   return (
-    <section id="experience" className="relative py-20 sm:py-28">
+    <section id="experience" className="relative py-10 sm:py-14 lg:py-16">
       <div className="wrap">
         <SectionHeading
           eyebrow="Experience"
