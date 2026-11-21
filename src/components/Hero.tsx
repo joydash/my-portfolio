@@ -11,7 +11,7 @@ const quick = [
 
 export default function Hero() {
   return (
-    <section id="home" className="relative isolate overflow-hidden pt-28 pb-16 sm:pt-32 lg:pb-24">
+    <section id="home" className="relative isolate overflow-hidden pt-24 pb-10 sm:pt-28 sm:pb-14 lg:pb-20">
       <div className="absolute inset-0 -z-10" aria-hidden="true">
         <div className="grid-bg absolute inset-0" />
         <div
@@ -27,7 +27,7 @@ export default function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink to-transparent" />
       </div>
 
-      <div className="wrap grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
+      <div className="wrap grid items-center gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-7">
           <p
             className="inline-flex items-center gap-2.5 rounded-full border border-ok/30 bg-ok/10 px-3.5 py-1.5 font-mono text-[11px] font-medium tracking-wider text-ok sm:text-xs"
@@ -37,7 +37,7 @@ export default function Hero() {
             {site.availability}
           </p>
 
-          <h1 className="mt-6 text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+          <h1 className="mt-5 text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
             Joy <span className="gradient-text">Dash</span>
           </h1>
           <p className="mt-4 text-lg font-medium text-fg sm:text-xl">
@@ -78,7 +78,7 @@ export default function Hero() {
             </ul>
           </div>
 
-          <dl className="mt-10 grid max-w-xl grid-cols-3 gap-4 border-t border-line pt-6">
+          <dl className="mt-8 grid max-w-xl grid-cols-3 gap-4 border-t border-line pt-5">
             {[
               ["Tier 2/3", "NOC & corporate support"],
               ["MTCNA", "MikroTik certified"],
@@ -93,7 +93,7 @@ export default function Hero() {
         </div>
 
         <div className="lg:col-span-5">
-          <div className="relative mx-auto w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[440px]">
+          <div className="relative mx-auto w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[400px] xl:max-w-[440px]">
             <div
               className="absolute -inset-12 -z-10 rounded-full bg-[radial-gradient(closest-side,rgba(56,189,248,0.2),transparent_72%)]"
               aria-hidden="true"
@@ -105,23 +105,23 @@ export default function Hero() {
             <Image
               src="/images/joy.webp"
               alt="Portrait of Joy Dash, Support Engineer"
-              width={990}
-              height={1290}
+              width={792}
+              height={1032}
               priority
-              sizes="(min-width: 1024px) 440px, (min-width: 640px) 400px, 340px"
+              sizes="(min-width: 1280px) 440px, (min-width: 1024px) 400px, (min-width: 640px) 360px, 280px"
               className="relative h-auto w-full"
               style={{
                 maskImage: "linear-gradient(to right, #000 80%, transparent 100%)",
                 WebkitMaskImage: "linear-gradient(to right, #000 80%, transparent 100%)",
               }}
             />
-            <div className="glass absolute -left-2 top-[58%] rounded-xl border border-line px-3.5 py-2.5 shadow-xl sm:-left-6">
+            <div className="glass absolute -left-6 top-[58%] hidden rounded-xl border border-line px-3.5 py-2.5 shadow-xl xl:block">
               <p className="font-mono text-[10px] uppercase tracking-widest text-muted">
                 Certified
               </p>
               <p className="text-sm font-semibold text-fg">MikroTik MTCNA</p>
             </div>
-            <div className="glass absolute -right-1 top-[20%] rounded-xl border border-line px-3.5 py-2.5 shadow-xl sm:-right-4">
+            <div className="glass absolute -right-4 top-[20%] hidden rounded-xl border border-line px-3.5 py-2.5 shadow-xl xl:block">
               <p className="font-mono text-[10px] uppercase tracking-widest text-muted">
                 Focus
               </p>
@@ -131,6 +131,16 @@ export default function Hero() {
               </p>
             </div>
           </div>
+          <ul className="mt-4 flex flex-wrap items-center justify-center gap-2 xl:hidden">
+            <li className="glass rounded-lg border border-line px-3 py-2">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-muted">Certified </span>
+              <span className="text-sm font-semibold text-fg">MikroTik MTCNA</span>
+            </li>
+            <li className="glass flex items-center gap-1.5 rounded-lg border border-line px-3 py-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-ok" aria-hidden="true" />
+              <span className="text-sm font-semibold text-fg">BGP · OSPF · FTTH</span>
+            </li>
+          </ul>
         </div>
       </div>
     </section>

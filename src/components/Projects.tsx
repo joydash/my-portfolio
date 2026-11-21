@@ -31,7 +31,7 @@ export default function Projects() {
   const close = useCallback(() => setActiveId(null), []);
 
   return (
-    <section id="projects" className="relative py-20 sm:py-28">
+    <section id="projects" className="relative py-10 sm:py-14 lg:py-16">
       <div className="wrap">
         <SectionHeading
           eyebrow="Featured Projects"
