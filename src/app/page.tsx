@@ -9,6 +9,7 @@ import Navbar from "@/components/Navbar";
 import Pillars from "@/components/Pillars";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
+import Toolkit from "@/components/Toolkit";
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
         <ExperienceTimeline />
         <Projects />
         <Skills />
+        <Toolkit />
         <Certifications />
         <EducationSection />
         <Contact />

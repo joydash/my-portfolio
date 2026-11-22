@@ -16,6 +16,13 @@ export const site = {
   designation: "Support Engineer",
   focus: "Corporate Network Operations & Enterprise IT Infrastructure",
   availability: "AVAILABLE FOR BANKING & ENTERPRISE IT ROLES",
+  /** Hero portrait: transparent cut-out so it blends with the dark background. Replace the file to swap it. */
+  portrait: {
+    src: "/images/portrait.webp",
+    width: 816,
+    height: 872,
+    alt: "Portrait of Joy Dash, Support Engineer",
+  },
   cvPath: "/cv.pdf",
   cvDownloadName: "Joy-Dash-CV.pdf",
   headline:
@@ -32,6 +39,7 @@ export const navLinks = [
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
   { id: "skills", label: "Skills" },
+  { id: "toolkit", label: "Toolkit" },
   { id: "certifications", label: "Certifications" },
   { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
@@ -43,6 +51,12 @@ export const about = {
     "I configure core MikroTik routers with BGP and OSPF, apply PCC for multi-WAN load balancing and PCQ for fair bandwidth allocation, and administer BDCOM OLT platforms for FTTH access. Alongside the job I am completing a B.Sc. in Computer Science & Engineering, building the software and systems foundation to grow into Network & Infrastructure, IT Operations and Banking Technology roles.",
   ],
 };
+
+export const heroStats = [
+  { label: "Tier 2/3", detail: "NOC & corporate support" },
+  { label: "MTCNA", detail: "MikroTik certified" },
+  { label: "B.Sc. CSE", detail: "Uttara University" },
+] as const;
 
 export type Highlight = {
   stat: string;
@@ -73,7 +87,7 @@ export const highlights: Highlight[] = [
   {
     stat: "B.Sc. CSE",
     title: "Engineering foundation",
-    text: "Uttara University, 7th semester running — alongside MTCNA certification.",
+    text: "B.Sc. in CSE at Uttara University — alongside MikroTik MTCNA certification.",
     icon: "cap",
   },
 ];
@@ -422,26 +436,60 @@ export const certifications: Certification[] = [
 ];
 
 export type Education = {
+  level: string;
   degree: string;
   institution: string;
   detail: string;
-  period: string;
-  status: string;
 };
 
 export const education: Education[] = [
   {
+    level: "Bachelor's",
     degree: "B.Sc. in Computer Science & Engineering",
     institution: "Uttara University",
     detail: "Department of CSE, School of Science & Engineering",
-    period: "Fall 2024 – Present",
-    status: "7th semester running (Fall 2026)",
   },
   {
+    level: "Diploma",
     degree: "Diploma in Computer Engineering",
     institution: "Shamshun Nahar Haroon Private Polytechnic Institute",
     detail: "Department of Computer Technology · BTEB",
-    period: "2020 – 2024",
-    status: "CGPA 3.45 / 4.00",
   },
+  {
+    level: "Higher Secondary",
+    degree: "Higher Secondary Certificate (HSC) — Science",
+    institution: "Bara Aulia University College",
+    detail: "Science group",
+  },
+  {
+    level: "Secondary",
+    degree: "Secondary School Certificate (SSC) — Science",
+    institution: "Khedar Mara High School",
+    detail: "Science group",
+  },
+];
+
+export type Tool = { no: string; name: string; role: string };
+
+export const toolkit: Tool[] = [
+  { no: "01", name: "WinBox", role: "MikroTik Management" },
+  { no: "02", name: "Wireshark", role: "Packet Analysis" },
+  { no: "03", name: "WinMTR", role: "Packet Loss" },
+  { no: "04", name: "PRTG", role: "Network Monitoring" },
+  { no: "05", name: "Zabbix", role: "NMS Monitoring" },
+  { no: "06", name: "PuTTY", role: "SSH/Telnet" },
+  { no: "07", name: "Advanced IP Scanner", role: "LAN Scanning" },
+  { no: "08", name: "Nmap", role: "Port Scanning" },
+  { no: "09", name: "The Dude", role: "Network Mapping" },
+  { no: "10", name: "Grafana", role: "Dashboard" },
+  { no: "11", name: "Draw.io", role: "Network Documentation" },
+  { no: "12", name: "tftpd64", role: "File Transfer" },
+  { no: "13", name: "iPerf3", role: "Throughput Testing" },
+  { no: "14", name: "MobaXterm", role: "Multi-session Remote Access" },
+  {
+    no: "15",
+    name: "PingPlotter",
+    role: "Continuous Ping, Latency Graph, Packet Loss History, Jitter Analysis",
+  },
+  { no: "16", name: "OLT Management", role: "Web, GUI, CLI" },
 ];

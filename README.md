@@ -31,6 +31,10 @@ Everything lives in **`src/data/portfolio.ts`**:
 | Skills matrix             | `skillGroups`                          |
 | Certifications            | `certifications`                       |
 | Education                 | `education`                            |
+| Technical toolkit         | `toolkit` (16 tools, numbered)         |
+| Hero stats row            | `heroStats`                            |
+| Hero portrait             | `site.portrait` + `public/images/portrait.webp` |
+| Orbiting hero gallery     | `src/data/showcase.ts`                 |
 
 ### Add a project
 
@@ -42,9 +46,18 @@ Optional fields: `live`, `repo` (show Live/GitHub buttons) and `image` (put a sc
 Overwrite **`public/cv.pdf`** — the Preview and Download buttons update automatically.
 Keep the public CV free of date of birth, home address, family details and references' phone numbers.
 
-### Replace the photo
+### Replace the hero portrait
 
-`public/images/joy.webp` is a transparent PNG-style cut-out (990×1290). Replace it with another transparent image of the same ratio for the best result (a clean background-removal tool gives a sharper edge than the automatic cut-out used here).
+Drop a **transparent PNG/WebP cut-out** (about 800×850, subject centred, bottom edge fading to transparent works best) at
+`public/images/portrait.webp` — or save it under another name and update `site.portrait` (`src`, `width`, `height`, `alt`) in `src/data/portfolio.ts`.
+Because it is transparent, it blends with the dark hero background automatically.
+
+### Add or swap the floating tech visuals (orbit gallery)
+
+1. Put a square image (about 512×512, `.webp`/`.png`/`.jpg`) in `public/images/showcase/`.
+2. Add an entry in `src/data/showcase.ts` (`id`, short `label`, `src`, `alt`).
+
+Items are spaced evenly around the orbit automatically (4–6 looks best). Motion is pure CSS, pauses on hover and is disabled for visitors who prefer reduced motion.
 
 ## Contact form
 

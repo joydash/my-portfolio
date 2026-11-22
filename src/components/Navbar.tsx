@@ -51,7 +51,7 @@ export default function Navbar() {
       if (e.key === "Escape") setOpen(false);
     };
     const onResize = () => {
-      if (window.innerWidth >= 1024) setOpen(false);
+      if (window.innerWidth >= 1280) setOpen(false);
     };
     window.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);
@@ -87,7 +87,7 @@ export default function Navbar() {
           </span>
         </a>
 
-        <ul className="hidden items-center gap-0.5 lg:flex">
+        <ul className="hidden items-center gap-0.5 xl:flex">
           {navLinks.map((l) => (
             <li key={l.id}>
               <a
@@ -125,7 +125,7 @@ export default function Navbar() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-drawer"
-            className="grid h-11 w-11 place-items-center rounded-lg border border-line text-fg transition hover:bg-white/5 lg:hidden"
+            className="grid h-11 w-11 place-items-center rounded-lg border border-line text-fg transition hover:bg-white/5 xl:hidden"
           >
             <Icon name={open ? "x" : "menu"} className="h-5 w-5" />
           </button>
@@ -134,7 +134,7 @@ export default function Navbar() {
     </header>
 
       {open && (
-        <div className="fixed inset-0 top-0 z-[60] lg:hidden">
+        <div className="fixed inset-0 top-0 z-[60] xl:hidden">
           <button
             type="button"
             aria-label="Close menu"

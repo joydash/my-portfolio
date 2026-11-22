@@ -178,3 +178,214 @@ body {
     display: none;
   }
 }
+
+/* ---------- hero: name reveal ---------- */
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding: 0.04em 0.06em 0.16em;
+  margin: -0.04em -0.06em -0.16em;
+  transition: filter 0.35s ease;
+}
+.word-mask:hover {
+  filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.45));
+}
+.word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(105%) rotate(5deg);
+  transform-origin: left bottom;
+  filter: blur(10px);
+  animation: word-in 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--wd, 0ms);
+}
+.word-shimmer {
+  background: linear-gradient(100deg, #f8fafc 0%, #38bdf8 30%, #10b981 55%, #38bdf8 78%, #f8fafc 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation:
+    word-in 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    shimmer 7s ease-in-out 1.8s infinite;
+  animation-delay: var(--wd, 0ms), 1.8s;
+}
+@keyframes word-in {
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+@keyframes shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.hero-in {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: hero-in 0.8s ease forwards;
+  animation-delay: var(--hd, 0ms);
+}
+@keyframes hero-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- hero: orbit showcase ---------- */
+.orbit {
+  position: relative;
+  container-type: inline-size;
+}
+.orbit-glow {
+  position: absolute;
+  inset: -6%;
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, rgba(56, 189, 248, 0.2), transparent 72%);
+}
+.orbit-track {
+  position: absolute;
+  border-radius: 9999px;
+  border: 1px dashed rgba(148, 163, 184, 0.2);
+}
+.orbit-track-outer {
+  inset: 9%;
+}
+.orbit-track-inner {
+  inset: 24%;
+  border-style: solid;
+  border-color: rgba(56, 189, 248, 0.09);
+}
+.orbit-portrait {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  width: 68%;
+  height: auto;
+  transform: translateX(-50%);
+}
+.orbit-ring {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: orbit-spin 70s linear infinite;
+}
+.orbit-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18cqw;
+  height: 18cqw;
+  margin: -9cqw 0 0 -9cqw;
+  transform: rotate(var(--a)) translateX(41cqw) rotate(calc(var(--a) * -1));
+}
+.orbit-counter {
+  width: 100%;
+  height: 100%;
+  animation: orbit-spin-rev 70s linear infinite;
+}
+.orbit-float {
+  width: 100%;
+  height: 100%;
+  animation: orbit-bob 5.5s ease-in-out infinite;
+  animation-delay: var(--f, 0s);
+}
+.orbit-bubble {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 9999px;
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  background: #07101d;
+  box-shadow:
+    0 0 0 4px rgba(8, 12, 20, 0.7),
+    0 14px 34px -10px rgba(56, 189, 248, 0.4);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.orbit-bubble:hover {
+  transform: scale(1.12);
+  border-color: #38bdf8;
+}
+.orbit-label {
+  display: none;
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 10% 0 9%;
+  text-align: center;
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  color: #e2e8f0;
+  background: linear-gradient(to top, rgba(5, 11, 22, 0.92), transparent);
+}
+@container (min-width: 400px) {
+  .orbit-label {
+    display: block;
+  }
+}
+.orbit:hover .orbit-ring,
+.orbit:hover .orbit-counter,
+.orbit:hover .orbit-float {
+  animation-play-state: paused;
+}
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes orbit-spin-rev {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes orbit-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* ---------- toolkit cards ---------- */
+.tool {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+.tool::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, #38bdf8, #10b981);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.tool:hover,
+.tool:focus-within {
+  transform: translateY(-3px);
+  border-color: rgba(56, 189, 248, 0.4);
+  background-color: #111c33;
+  box-shadow: 0 16px 40px -20px rgba(56, 189, 248, 0.45);
+}
+.tool:hover::before,
+.tool:focus-within::before {
+  transform: scaleX(1);
+}
