@@ -13,6 +13,12 @@ const parser = new XMLParser({
 
 type Node = Record<string, unknown> | string | number | undefined | null;
 
+type FeedDoc = {
+  rss?: { channel?: { item?: Record<string, unknown> | Record<string, unknown>[] } };
+  feed?: { entry?: Record<string, unknown> | Record<string, unknown>[] };
+  "rdf:RDF"?: { item?: Record<string, unknown> | Record<string, unknown>[] };
+};
+
 const arr = <T>(v: T | T[] | undefined | null): T[] => (v == null ? [] : Array.isArray(v) ? v : [v]);
 
 /** Reads text from a parsed XML node (plain string, {#text}, or CDATA-wrapped). */
@@ -82,10 +88,10 @@ function toIso(value: string): string | null {
 }
 
 export function parseFeed(xml: string, source: FeedSource): NewAutoBlog[] {
-  const doc = parser.parse(xml) as Record<string, any>;
-  const rssItems: Record<string, unknown>[] = arr(doc?.rss?.channel?.item);
-  const atomEntries: Record<string, unknown>[] = arr(doc?.feed?.entry);
-  const rdfItems: Record<string, unknown>[] = arr(doc?.["rdf:RDF"]?.item);
+  const doc = parser.parse(xml) as FeedDoc;
+  const rssItems = arr(doc?.rss?.channel?.item);
+  const atomEntries = arr(doc?.feed?.entry);
+  const rdfItems = arr(doc?.["rdf:RDF"]?.item);
   const limit = source.limit ?? 8;
   const out: NewAutoBlog[] = [];
 
