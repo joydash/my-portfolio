@@ -7,7 +7,8 @@ const parser = new XMLParser({
   ignoreAttributes: false,
   attributeNamePrefix: "@_",
   textNodeName: "#text",
-  processEntities: true,
+  // Dev.to feeds contain >1000 entities (default limit). Feed URLs are fixed and trusted, so a higher cap is safe.
+  processEntities: { enabled: true, maxTotalExpansions: 10_000 },
   trimValues: true,
 });
 
@@ -136,7 +137,7 @@ export type FeedResult = { source: string; fetched: number; error?: string };
 
 export async function fetchFeed(source: FeedSource): Promise<{ items: NewAutoBlog[]; result: FeedResult }> {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 10_000);
+  const timer = setTimeout(() => controller.abort(), 15_000);
   try {
     const res = await fetch(source.url, {
       signal: controller.signal,
