@@ -1,10 +1,22 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { navLinks, site } from "@/data/portfolio";
 import Icon from "./Icon";
 
+const BLOG_LINK = { id: "blog", label: "Blog", href: "/blog" } as const;
+
 export default function Navbar() {
+  const pathname = usePathname();
+  const onHome = pathname === "/";
+  const items = [
+    ...navLinks.map((l) => ({ id: l.id, label: l.label, href: `/#${l.id}` })),
+    BLOG_LINK,
+  ];
+  const isActive = (id: string) =>
+    id === "blog" ? pathname.startsWith("/blog") : id === "projects" && pathname.startsWith("/projects") ? true : onHome && active === id;
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("home");
   const [scrolled, setScrolled] = useState(false);
@@ -23,6 +35,7 @@ export default function Navbar() {
 
   // Scroll-spy
   useEffect(() => {
+    if (!onHome) return;
     const ids = ["home", ...navLinks.map((l) => l.id)];
     const els = ids
       .map((id) => document.getElementById(id))
@@ -37,7 +50,7 @@ export default function Navbar() {
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
+  }, [onHome]);
 
   // Drawer: Escape key, scroll lock, focus handling
   useEffect(() => {
@@ -74,8 +87,8 @@ export default function Navbar() {
         aria-label="Primary"
         className="wrap flex h-16 items-center justify-between gap-4"
       >
-        <a
-          href="#home"
+        <Link
+          href="/"
           aria-label={`${site.name} — back to top`}
           className="group flex h-11 items-center gap-2.5"
         >
@@ -85,25 +98,25 @@ export default function Navbar() {
           <span className="hidden font-mono text-xs uppercase tracking-widest text-muted sm:block">
             joydash<span className="text-accent">.me</span>
           </span>
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-0.5 xl:flex">
-          {navLinks.map((l) => (
+          {items.map((l) => (
             <li key={l.id}>
-              <a
-                href={`#${l.id}`}
-                aria-current={active === l.id ? "true" : undefined}
+              <Link
+                href={l.href}
+                aria-current={isActive(l.id) ? "true" : undefined}
                 className={`relative inline-flex h-11 items-center px-2.5 text-[13px] transition-colors ${
-                  active === l.id ? "text-fg" : "text-muted hover:text-fg"
+                  isActive(l.id) ? "text-fg" : "text-muted hover:text-fg"
                 }`}
               >
                 {l.label}
                 <span
                   className={`absolute inset-x-2.5 bottom-1.5 h-px bg-accent transition-opacity ${
-                    active === l.id ? "opacity-100" : "opacity-0"
+                    isActive(l.id) ? "opacity-100" : "opacity-0"
                   }`}
                 />
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -162,21 +175,21 @@ export default function Navbar() {
               </button>
             </div>
             <ul className="flex flex-1 flex-col gap-1 overflow-y-auto">
-              {navLinks.map((l, i) => (
+              {items.map((l, i) => (
                 <li key={l.id}>
-                  <a
+                  <Link
                     ref={i === 0 ? firstLinkRef : undefined}
-                    href={`#${l.id}`}
+                    href={l.href}
                     onClick={close}
                     className={`flex min-h-12 items-center justify-between rounded-lg px-3 text-base transition ${
-                      active === l.id
+                      isActive(l.id)
                         ? "bg-accent/10 text-accent"
                         : "text-fg hover:bg-white/5"
                     }`}
                   >
                     {l.label}
                     <Icon name="arrow-right" className="h-4 w-4 opacity-50" />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
