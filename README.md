@@ -43,7 +43,7 @@ Optional fields: `live`, `repo` (show Live/GitHub buttons) and `image` (put a sc
 
 ### Replace the CV
 
-Overwrite **`public/cv.pdf`** — the Preview and Download buttons update automatically.
+Overwrite **`public/cv.pdf`**, then bump the `?v=` number in `site.cvPath` (`src/data/portfolio.ts`) — the Preview and Download buttons update automatically, and the bump guarantees phones never show a cached old copy.
 Keep the public CV free of date of birth, home address, family details and references' phone numbers.
 
 ### Replace the hero portrait

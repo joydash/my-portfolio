@@ -6,6 +6,11 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        // Always revalidate the CV so a replaced PDF shows up immediately
+        source: "/cv.pdf",
+        headers: [{ key: "Cache-Control", value: "no-cache, must-revalidate" }],
+      },
+      {
         source: "/(.*)",
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },

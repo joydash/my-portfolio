@@ -23,7 +23,8 @@ export const site = {
     height: 872,
     alt: "Portrait of Joy Dash, Support Engineer",
   },
-  cvPath: "/cv.pdf",
+  /** Bump the ?v= number whenever you replace public/cv.pdf so phones and browsers never show an old copy. */
+  cvPath: "/cv.pdf?v=3",
   cvDownloadName: "Joy-Dash-CV.pdf",
   headline:
     "Support Engineer — Corporate Network Operations & Enterprise IT Infrastructure",
