@@ -3,37 +3,33 @@ import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
 import EducationSection from "@/components/EducationSection";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-import Navbar from "@/components/Navbar";
+import SiteShell from "@/components/SiteShell";
+import { getHomeProjects, getLatestBlogs } from "@/lib/data";
 import Pillars from "@/components/Pillars";
-import Projects from "@/components/Projects";
+import BlogPreview from "@/components/BlogPreview";
+import ProjectsPreview from "@/components/ProjectsPreview";
 import Skills from "@/components/Skills";
 import Toolkit from "@/components/Toolkit";
 
-export default function Home() {
+// Static shell, refreshed every 5 minutes (and instantly when the admin saves, via revalidatePath).
+export const revalidate = 300;
+
+export default async function Home() {
+  const [projects, posts] = await Promise.all([getHomeProjects(4), getLatestBlogs(3)]);
   return (
-    <>
-      <a
-        href="#about"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:font-semibold focus:text-ink"
-      >
-        Skip to content
-      </a>
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Pillars />
-        <ExperienceTimeline />
-        <Projects />
-        <Skills />
-        <Toolkit />
-        <Certifications />
-        <EducationSection />
-        <Contact />
-      </main>
-      <Footer />
-    </>
+    <SiteShell>
+      <Hero />
+      <About />
+      <Pillars />
+      <ExperienceTimeline />
+      <ProjectsPreview projects={projects} />
+      <BlogPreview posts={posts} />
+      <Skills />
+      <Toolkit />
+      <Certifications />
+      <EducationSection />
+      <Contact />
+    </SiteShell>
   );
 }
