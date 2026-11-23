@@ -18,3 +18,8 @@ grant execute on function public.is_admin() to anon, authenticated, service_role
 -- select has_table_privilege('authenticated','public.blogs','select')  as auth_select,
 --        has_table_privilege('authenticated','public.blogs','insert')  as auth_insert,
 --        has_table_privilege('anon','public.blogs','select')           as anon_select;
+
+-- 4) The RSS sync writes with the service_role key, which also needs table privileges on newer Supabase projects.
+--    (This was the actual cause of "permission denied for table blogs" during "Sync Tech Blogs Now".)
+grant usage on schema public to service_role;
+grant all on public.blogs, public.projects to service_role;
