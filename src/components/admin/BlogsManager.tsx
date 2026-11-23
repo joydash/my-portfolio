@@ -40,9 +40,9 @@ export default function BlogsManager() {
   const [sync, setSync] = useState<SyncResult | null>(null);
 
   const load = useCallback(async () => {
-    let q = getBrowserSupabase().from("blogs").select(BLOG_LIST_COLUMNS).order("published_at", { ascending: false }).limit(limit + 1);
+    let q = getBrowserSupabase().from("blogs").select(BLOG_LIST_COLUMNS);
     if (filter !== "all") q = q.eq("source_type", filter);
-    const { data, error } = await q;
+    const { data, error } = await q.order("published_at", { ascending: false }).limit(limit + 1);
     if (error) toast(error.message, "error");
     else setRows((data ?? []) as BlogListItem[]);
     setLoading(false);
