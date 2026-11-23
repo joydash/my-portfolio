@@ -159,3 +159,10 @@ from (values
   )
 ) as v(title, summary, tech_stack, display_order)
 where not exists (select 1 from public.projects);
+
+-- ---------------------------------------------------------------------
+-- 5. TABLE PRIVILEGES (RLS alone is not enough on projects created with restricted defaults)
+-- ---------------------------------------------------------------------
+grant usage on schema public to anon, authenticated;
+grant select on public.projects, public.blogs to anon, authenticated;
+grant insert, update, delete on public.projects, public.blogs to authenticated;
